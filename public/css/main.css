@@ -1,0 +1,18 @@
+.cmd {
+  background-color: black;
+  border-radius: 5px;
+  color: #43d543;
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.file-name {
+  font-weight: bold;
+  margin-bottom: 0.1em;
+}
+.file-content {
+  padding: 0.5em;
+  background-color: #f1f7f6;
+  font-size: 1.2em;
+  border: 1px solid black;
+}

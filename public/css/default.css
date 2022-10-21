@@ -1,3 +1,6 @@
 body {
   margin: 8px;
 }
+pre {
+  margin: 0;
+}

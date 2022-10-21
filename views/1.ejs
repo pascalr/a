@@ -3,24 +3,29 @@
   <head>
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/lib.css">
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
     <%- include('partials/navbar') %>
     <div style="max-width: 70rem; margin: auto;">
       <h1>Application Node.js web minimale</h1>
       <p>Voici ce que j'utilise comme point de départ lorsque je commence une nouvelle application web. Ce code permet de faire un site avec des éléments statiques (qui ne sont pas modifiées sur le serveur).</p>
+      <h2>Prérequis</h2>
+
       <p>Comme technologies, j'utilise:</p>
       <ul>
         <li>Node.js</li>
         <li>Express.js</li>
       </ul>
-    
-      <h2>Prérequis</h2>
-      <p>Installer node.js</p>
+
+      <h3>Installer node.js</h3>
+      <pre class="cmd">$ node --version</pre>
+      <p>Suivre les instructions d'installation sur le site internet de l'organisation: <a href="https://nodejs.org/en/download/package-manager/">https://nodejs.org/en/download/package-manager/</a></p>
+      
       <p>Installer Express.js</p>
       
       <pre>$ TODO commande pour install node.js</pre>
-      <pre>$ npm install ejs express</pre>
+      <pre class="cmd">$ npm install ejs express</pre>
 
       <h3>Package.json</h3>
 
@@ -32,19 +37,22 @@
       <pre>// «Hello world!» devrait s'afficher à l'écran lorsque ce programme s'exécute.
     console.log('Hello world!')</pre>
       <p>Pour exécuter, lancer la commande dans suivante dans le terminal:</p>
-      <pre>$ node serveur.js</pre>
+      <pre class="cmd">$ node serveur.js</pre>
       <p>Le message devrait s'afficher à l'écran.</p>
       <h2>Code de base</h2>
       <pre>
       </pre>
       <h3>Starting the server</h3>
-      <pre>$ npm run start</pre>
+      <pre class="cmd">$ npm run start</pre>
       <h2>Files</h2>
       <h3>.gitignore</h3>
-      <p>List files to exclude from our git repository.</p>
-      <div class="filename">.gitignore</div>
-      <pre># Ignore modules
+      <p>Si vous utilisez <b>git</b> pour gérer votre code source, voici un fichier de départ qui donne la liste des fichiers à ignorer par le programme. Personnalisez selon vos besoins.</p>
+      <div class="file-name">.gitignore</div>
+      <pre class="file-content"># Ignore modules
 /node_modules
+    
+# Ignore editors temporary swap files
+*.swp
 
 # Database files
 *.db
@@ -57,16 +65,143 @@
 !/public/build/.keep
 
 # Environment variables set by dotenv package.
-.env
+.env</pre>
+      <h3>router.js</h3>
+      <p>La liste des routes gérer par le serveur.</p>
+      <div class="file-name">src/router.js</div>
+      <pre class="file-content">import express from 'express';
 
-# Volume serves as storage on the production server
-# Keeping a copy localy for development
-/volume/*
-!/volume/.keep
-    
-# Ignore editors temporary swap files
-*.swp
-      </pre>
+const router = express.Router();
+
+router.get('/', function(req, res, next) {
+  // Partager des variables à vos vus en affectant la variables aux locals.
+  res.locals.renderingHome = true
+
+  res.render('index');
+});
+
+export default router;
+</pre>
+      <h3></h3>
+      <p></p>
+      <div class="file-name"></div>
+      <pre class="file-content">
+</pre>
+      <h3></h3>
+      <p></p>
+      <div class="file-name"></div>
+      <pre class="file-content">
+</pre>
+      <h3>server.js</h3>
+      <p>Contient le code principal pour gérer le serveur.</p>
+      <div class="file-name"></div>
+      <pre class="file-content">import express from 'express';
+import http from 'http';
+import path from 'path';
+import { fileURLToPath } from 'url';
+//import fs from 'fs';
+
+import router from './src/router.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// Locals declared here will be availabe inside all the views
+app.locals.hello = () => console.log('Hello world!');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// You can add folders here to be served directly from the server
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', router);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next("Error 404. It looks like the page you are looking for does not exists.");
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+
+  if (process.env.ENVIRONMENT !== "production") {
+
+    if (typeof err === 'string') {
+      res.locals.message = err;
+      res.locals.error = {};
+    } else {
+      res.locals.message = err.message;
+      res.locals.error = err;
+    }
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error_dev');
+
+  } else {
+    console.log('ERROR', err)
+    res.redirect('/error');
+  }
+});
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+var server = http.createServer(app);
+// Listen on provided port, on all network interfaces.
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+  var port = parseInt(val, 10)
+  if (isNaN(port)) {return val} // named pipe
+  if (port >= 0) {return port} // port number
+  return false
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) {
+  if (error.syscall !== 'listen') {throw error}
+
+  var bind = (typeof port === 'string' ? 'Pipe ' : 'Port ') + port
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  console.log('Listening on ' + bind);
+}
+</pre>
     </div>
   </body>
 </html>
