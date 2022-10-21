@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/lib.css">
   </head>
   <body>
+    <%- include('partials/navbar') %>
     <div style="max-width: 70rem; margin: auto;">
       <h1>Application Node.js web minimale</h1>
       <p>Voici ce que j'utilise comme point de départ lorsque je commence une nouvelle application web. Ce code permet de faire un site avec des éléments statiques (qui ne sont pas modifiées sur le serveur).</p>
@@ -39,6 +42,7 @@
       <h2>Files</h2>
       <h3>.gitignore</h3>
       <p>List files to exclude from our git repository.</p>
+      <div class="filename">.gitignore</div>
       <pre># Ignore modules
 /node_modules
 

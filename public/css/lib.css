@@ -1,0 +1,129 @@
+/* Generic styles which are not application specific. */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.plain-input {
+  border: none;
+  /*font-family: inherit;*/
+  /*font-size: inherit;*/
+  padding: 0;
+  width: auto;
+}
+
+.plain-link, .plain-link:visited, .plain-link:hover, .plain-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.plain-btn, .btn-image {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* gap in flex does not work on my old smartphone */
+.gap-pad-20 > * {padding-right: 20px;} .gap-pad-20 > *:last-child {padding-right: 0px;}
+.gap-20 > * {margin-right: 20px;} .gap-20 > *:last-child {margin-right: 0px;}
+.gap-15 > * {margin-right: 15px;} .gap-l5 > *:last-child {margin-right: 0px;}
+.gap-30 > * {margin-right: 30px;} .gap-30 > *:last-child {margin-right: 0px;}
+.gap-10 > * {margin-right: 10px;} .gap-l0 > *:last-child {margin-right: 0px;}
+
+.over-container {
+  position: relative;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+}
+.over-container .left-center {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.over-container .right-center {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.over-container .bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 30px;
+}
+.over-container .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.over-container .bottom-center {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+
+/* hxxx is a styling used for texts. The number is just an id, it does not have any meaning. */
+/* Ouin pas sûr, je pense je préfère être plus explicit. fsr-08 gray au lieu de h002... */
+.h001 {
+  font-size: 1.2rem;
+}
+.h002 {
+  font-size: 0.8rem;
+  color: gray;
+}
+.h003 {
+  font-size: 1.5rem;
+}
+
+/* font sizes */
+.fs-08 { font-size: 0.8em; }
+.fsr-08 { font-size: 0.8rem; }
+.fs-09 { font-size: 0.9em; }
+.fsr-09 { font-size: 0.9rem; }
+.fs-095 { font-size: 0.95em; }
+.fsr-095 { font-size: 0.95rem; }
+.fs-11 { font-size: 1.1em; }
+.fsr-11 { font-size: 1.1rem; }
+.fs-12 { font-size: 1.2em; }
+.fsr-12 { font-size: 1.2rem; }
+.fs-15 { font-size: 1.5em; }
+.fsr-15 { font-size: 1.5rem; }
+.fs-2 { font-size: 2em; }
+.fsr-2 { font-size: 2rem; }
+.fs-25 { font-size: 2.5em; }
+.fsr-25 { font-size: 2.5rem; }
+
+.ff-montserra {font-family: 'Montserra'}
+
+.white { color: white; }
+
+/* Relative keeps the position of the element in the page, but it takes up space. */
+/* Absolute takes no space, but it needs to have a parent which is positioned. */
+/* By combining those two, it works. */
+.position-limbo {position: relative;}
+.position-limbo > * {position: absolute;}
+
+.disabled {
+  color: gray;
+  pointer-events: none;
+}

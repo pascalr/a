@@ -7,6 +7,7 @@ router.get('/:page', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
+  res.locals.renderingHome = true
   res.render('index');
 });
 
