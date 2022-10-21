@@ -1,1 +1,1 @@
-# Articles gnénéraux
+# Articles généraux
