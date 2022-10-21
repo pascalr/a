@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <div style="max-width: 70rem; margin: auto;">
+      <h1>Application Node.js web minimale</h1>
+      <p>Voici ce que j'utilise comme point de départ lorsque je commence une nouvelle application web. Ce code permet de faire un site avec des éléments statiques (qui ne sont pas modifiées sur le serveur).</p>
+      <p>Comme technologies, j'utilise:</p>
+      <ul>
+        <li>Node.js</li>
+        <li>Express.js</li>
+      </ul>
+    
+      <h2>Prérequis</h2>
+      <p>Installer node.js</p>
+      <p>Installer Express.js</p>
+      
+      <pre>$ TODO commande pour install node.js</pre>
+      <pre>$ npm install ejs express</pre>
+
+      <h3>Package.json</h3>
+
+      "type": "module"
+    
+      <h2>Préparation</h2>
+      <p>Créer un nouveau dossier et ajouter un nouveau fichier javascript pour contenir le code du serveur.</p>
+      serveur.js
+      <pre>// «Hello world!» devrait s'afficher à l'écran lorsque ce programme s'exécute.
+    console.log('Hello world!')</pre>
+      <p>Pour exécuter, lancer la commande dans suivante dans le terminal:</p>
+      <pre>$ node serveur.js</pre>
+      <p>Le message devrait s'afficher à l'écran.</p>
+      <h2>Code de base</h2>
+      <pre>
+      </pre>
+      <h3>Starting the server</h3>
+      <pre>$ npm run start</pre>
+      <h2>Files</h2>
+      <h3>.gitignore</h3>
+      <p>List files to exclude from our git repository.</p>
+      <pre># Ignore modules
+/node_modules
+
+# Database files
+*.db
+
+# Temporary files
+/var
+
+# Compiled assets will go here
+/public/build/*
+!/public/build/.keep
+
+# Environment variables set by dotenv package.
+.env
+
+# Volume serves as storage on the production server
+# Keeping a copy localy for development
+/volume/*
+!/volume/.keep
+    
+# Ignore editors temporary swap files
+*.swp
+      </pre>
+    </div>
+  </body>
+</html>
