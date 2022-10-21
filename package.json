@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/pascalr/a#readme",
   "dependencies": {
+    "chokidar": "^3.5.3",
     "ejs": "^3.1.8",
+    "esbuild": "^0.15.12",
     "express": "^4.18.2",
     "highlight.js": "^11.6.0"
   }
