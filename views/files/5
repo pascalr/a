@@ -1,0 +1,18 @@
+# Ignore modules
+/node_modules
+    
+# Ignore editors temporary swap files
+*.swp
+
+# Database files
+*.db
+
+# Temporary files
+/var
+
+# Compiled assets will go here
+/public/build/*
+!/public/build/.keep
+
+# Environment variables set by dotenv package.
+.env

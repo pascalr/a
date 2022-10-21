@@ -1,19 +1,13 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 //import fs from 'fs';
 
 import router from './src/router.js';
-import builder from './src/builder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-if (process.env.NODE_ENV !== 'production') {
-  builder.liveBuildJs();
-}
 
 var app = express();
 
@@ -23,23 +17,11 @@ app.set('view engine', 'ejs');
 
 // Locals declared here will be availabe inside all the views
 app.locals.hello = () => console.log('Hello world!');
-app.locals.encodeHtml = function(r) {
-  return r.toString().replace(/[\x26\x0A\<>'"]/g,function(r){return"&#"+r.charCodeAt(0)+";"})
-}
-app.locals.files = {
-  f1: fs.readFileSync('views/files/1.html'),
-  f2: fs.readFileSync('views/files/2.json'),
-  f3: fs.readFileSync('views/files/3.js'),
-  f4: fs.readFileSync('views/files/4.js'),
-  f5: fs.readFileSync('views/files/5'),
-}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // You can add folders here to be served directly from the server
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules/highlight.js/styles/default.css')));
-app.use("/css/highlight_default.css", express.static(path.join(__dirname, 'node_modules/highlight.js/styles/default.css')));
 
 app.use('/', router);
 
