@@ -4,3 +4,8 @@ body {
 pre {
   margin: 0;
 }
+p {
+  display: block;
+  margin: 0 0.5em;
+  background-color: red !important;
+}

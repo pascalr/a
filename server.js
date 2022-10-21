@@ -33,12 +33,19 @@ app.locals.files = {
   f4: fs.readFileSync('views/files/4.js'),
   f5: fs.readFileSync('views/files/5'),
 }
+app.locals.linkIfCond = (title, link, cond, options={}) => {
+  if (!cond) {return '<span class="disabled">'+title+'</span>'}
+  let klass = options.className ? ' class="'+options.className+'"' : ''
+  return '<a href="'+link+'" '+klass+'>'+title+'</a>'
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // You can add folders here to be served directly from the server
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/highlight.js/styles/default.css')));
+app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')));
+app.use(express.static(path.join(__dirname, 'node_modules/@popperjs/core/dist/')));
 app.use("/css/highlight_default.css", express.static(path.join(__dirname, 'node_modules/highlight.js/styles/default.css')));
 
 app.use('/', router);
